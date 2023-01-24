@@ -49,7 +49,13 @@ public class User extends Auditable implements UserDetails {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_fk"), inverseJoinColumns = @JoinColumn(name = "role_fk"))
     private List<Role> roles = new ArrayList<>();
 
-    //TODO: Add contacts column
+    @OneToMany(mappedBy = "user")
+    private List<Contact> contacts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts = new ArrayList<>();
+
+
 
     // Constructor for registration
     public User(String username, String password, String email, String firstName, String lastName, String about, Media image, String displayName, List<Role> roles) {
